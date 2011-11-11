@@ -7,4 +7,12 @@ public class OtascoException extends RuntimeException {
 	public OtascoException(String message) {
 		super(message);
 	}
+
+	public OtascoException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public OtascoException(Throwable cause) {
+		super(cause);
+	}
 }
