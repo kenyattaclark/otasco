@@ -1,12 +1,13 @@
+package org.otasco;
 import org.junit.Before;
 import org.junit.Test;
+import org.otasco.ClassUnderTest;
+import org.otasco.Dependency;
+import org.otasco.DependencyA;
+import org.otasco.DependencyB;
+import org.otasco.DoSomethingService;
+import org.otasco.Otasco;
 
-import com.brightdome.testutil.ClassUnderTest;
-import com.brightdome.testutil.Dependency;
-import com.brightdome.testutil.DependencyA;
-import com.brightdome.testutil.DependencyB;
-import com.brightdome.testutil.DoSomethingService;
-import com.brightdome.testutil.OtascoAnnotations;
 
 
 public class DoSomethingServiceTest {
@@ -25,7 +26,7 @@ public class DoSomethingServiceTest {
 		dependencyA = new DependencyA();
 		dependencyB = new DependencyB();
 		doSomethingService = new DoSomethingService();
-		OtascoAnnotations.init(this);
+		Otasco.init(this);
 	}
 
 	@Test

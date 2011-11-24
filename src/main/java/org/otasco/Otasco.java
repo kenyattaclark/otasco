@@ -1,10 +1,10 @@
-package com.brightdome.testutil;
+package org.otasco;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OtascoAnnotations {
+public class Otasco {
 
 	public static void init(final Object testClass) {
 		if (testClass == null) {

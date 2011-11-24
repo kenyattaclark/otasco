@@ -1,4 +1,4 @@
-package com.brightdome.testutil;
+package org.otasco;
 
 public class DependencyA {
 	
