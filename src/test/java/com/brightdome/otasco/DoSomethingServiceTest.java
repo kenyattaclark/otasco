@@ -1,12 +1,13 @@
-package org.otasco;
+package com.brightdome.otasco;
 import org.junit.Before;
 import org.junit.Test;
-import org.otasco.ClassUnderTest;
-import org.otasco.Dependency;
-import org.otasco.DependencyA;
-import org.otasco.DependencyB;
-import org.otasco.DoSomethingService;
-import org.otasco.Otasco;
+
+import com.brightdome.otasco.ClassUnderTest;
+import com.brightdome.otasco.Dependency;
+import com.brightdome.otasco.DependencyA;
+import com.brightdome.otasco.DependencyB;
+import com.brightdome.otasco.DoSomethingService;
+import com.brightdome.otasco.Otasco;
 
 
 

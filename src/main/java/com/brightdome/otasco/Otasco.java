@@ -1,4 +1,4 @@
-package org.otasco;
+package com.brightdome.otasco;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

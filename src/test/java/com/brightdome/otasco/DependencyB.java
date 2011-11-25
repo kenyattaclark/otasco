@@ -1,4 +1,4 @@
-package org.otasco;
+package com.brightdome.otasco;
 
 public class DependencyB {
 	
