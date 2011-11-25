@@ -6,6 +6,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>otasco</name>
 
+	<scm>
+		<connection>scm:git:git@github.com:kenyattaclark/otasco.git</connection>
+		<url>scm:git:git@github.com:kenyattaclark/otasco.git</url>
+		<developerConnection>scm:git:git@github.com:kenyattaclark/otasco.git</developerConnection>
+	</scm>
+
 	<distributionManagement>
 		<repository>
 			<id>repo</id>
