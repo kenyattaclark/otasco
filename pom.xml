@@ -6,6 +6,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>otasco</name>
 
+	<distributionManagement>
+		<repository>
+			<id>repo</id>
+			<url>https://github.com/kenyattaclark/otasco-mvn-repo/raw/master/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-repo</id>
+			<url>https://github.com/kenyattaclark/otasco-mvn-repo/raw/master/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
