@@ -36,6 +36,8 @@ import java.util.List;
  */
 public class Otasco {
 
+	private Otasco() {};
+	
 	/**
 	 * Wires objects annotated with &#064;ClassUnderTest for given testClass with objects annotated with &#064;Dependency.
 	 * <p>
