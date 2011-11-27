@@ -1,22 +1,18 @@
 * Allows testing class under test without creating useless setters for dependencies.
 * Makes the test class more readable.
 
-' public class InvoiceManagerTest { 
+public class InvoiceManagerTest { 
+ 	  
+	@ClassUnderTest private InvoiceManager manager; 	  
  	     
-        &#064;Dependency     
-        private InvoiceCalculator invoiceCalculator;
+    @Dependency private InvoiceCalculator invoiceCalculator;
         
-        &#064;Dependency
-        private InvoiceDao invoiceDao;
+    @Dependency private InvoiceDao invoiceDao;
       
-      	 &#064;ClassUnderTest
-        private InvoiceManager manager;
-      
-        &#064;Before public void setup() {
-            invoiceCalculator = new InvoiceCalculator();
-            invoiceDao = new InvoiceDao();
-            manager = new InvoiceManager();
-            Otasco.init(this);
-        }
+    @Before public void setup() {
+        invoiceCalculator = new InvoiceCalculator();
+        invoiceDao = new InvoiceDao();
+        manager = new InvoiceManager();
+        Otasco.init(this);
     }
-'
+}
