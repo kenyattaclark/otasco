@@ -1,0 +1,22 @@
+* Allows testing class under test without creating useless setters for dependencies.
+* Makes the test class more readable.
+
+' public class InvoiceManagerTest { 
+ 	     
+        &#064;Dependency     
+        private InvoiceCalculator invoiceCalculator;
+        
+        &#064;Dependency
+        private InvoiceDao invoiceDao;
+      
+      	 &#064;ClassUnderTest
+        private InvoiceManager manager;
+      
+        &#064;Before public void setup() {
+            invoiceCalculator = new InvoiceCalculator();
+            invoiceDao = new InvoiceDao();
+            manager = new InvoiceManager();
+            Otasco.init(this);
+        }
+    }
+'
