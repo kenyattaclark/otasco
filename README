@@ -31,9 +31,10 @@ public class InvoiceManagerTest {
     @Mock
     private InvoiceDao invoiceDao;
       
-	@Before public void setup() {
+    @Before 
+    public void setup() {
         MockitoAnnotations.init(this); 
-		manager = new InvoiceManager();
-		Otasco.init(this);
-	}
+	manager = new InvoiceManager();
+	Otasco.init(this);
+    }
 }
