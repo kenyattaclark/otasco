@@ -27,7 +27,7 @@ public class InvoiceManagerTest {
     @Mock
     private InvoiceCalculator invoiceCalculator;
 
-	@Dependency
+    @Dependency
     @Mock
     private InvoiceDao invoiceDao;
       
