@@ -129,7 +129,7 @@ public class Otasco {
 
     private static String dependencyFieldName(Field testField) {
         final String dependencyValue = testField.getAnnotation(Dependency.class).value();
-        return StringUtils.isEmpty(dependencyValue) ? testField.getName() : dependencyValue;
+        return StringUtils.isBlank(dependencyValue) ? testField.getName() : dependencyValue;
     }
 
 }
