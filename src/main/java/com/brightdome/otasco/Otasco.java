@@ -73,7 +73,7 @@ public class Otasco {
             }
 
             for (Field testField : dependencyFields) {
-                final Field dependencyField = classUnderTest.getClass().getDeclaredField(dependencyFieldName(testField));
+                final Field dependencyField = getDependencyField(classUnderTest, testField.getName());
                 makeAccessible(dependencyField);
                 makeAccessible(testField);
                 dependencyField.set(classUnderTest, testField.get(testClass));
@@ -119,8 +119,8 @@ public class Otasco {
 
     private static List<Field> dependencyFieldsFromAnnotations(final Object testClass) {
         return new LinkedList<Field>(declaredFields(testClass).filter(new F<Field, Boolean>() {
-
-            @Override
+            
+        	@Override
             public Boolean f(Field field) {
                 return field.getAnnotation(Dependency.class) != null;
             }
@@ -131,5 +131,14 @@ public class Otasco {
         final String dependencyValue = testField.getAnnotation(Dependency.class).value();
         return StringUtils.isBlank(dependencyValue) ? testField.getName() : dependencyValue;
     }
-
+    
+    private static Field getDependencyField(Object classUnderTest, String dependecyFieldName) throws SecurityException, NoSuchFieldException {
+		Field dependencyField;
+		try {
+			dependencyField = classUnderTest.getClass().getDeclaredField(dependecyFieldName);
+		} catch (NoSuchFieldException e) {
+			dependencyField = classUnderTest.getClass().getSuperclass().getDeclaredField(dependecyFieldName);
+		}
+		return dependencyField;
+	}
 }
