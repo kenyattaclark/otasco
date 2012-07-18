@@ -1,11 +1,13 @@
 package com.brightdome.otasco;
 
-import org.apache.commons.lang.StringUtils;
 import java.lang.reflect.Field;
+import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.commons.lang3.reflect.FieldUtils;
+
 import fj.F;
 import fj.data.Option;
-import java.util.LinkedList;
 
 /**
  * <ul>
@@ -38,7 +40,6 @@ import java.util.LinkedList;
  * <b><code>Otasco.init(this)</code></b> method has to called to "wire" the annotated instance of class under test to the annotated dependencies.
  */
 public class Otasco {
-    
 
     private Otasco() {}
 
@@ -91,12 +92,10 @@ public class Otasco {
      */
     public static void setField(final String name, final Object value, final Object target) {
         try {
-            final Field field = target.getClass().getField(name);
-            makeAccessible(field);
-            field.set(target, value);
-        } catch (Exception e) {
-            throw new OtascoException("Error setting field on class: " + e.getMessage(), e);
-        }
+			FieldUtils.writeField(target, name, value, true);
+		} catch (IllegalAccessException e) {
+			throw new OtascoException("Error setting field on class: " + e.getMessage(), e);
+		}
     }
 
     private static void makeAccessible(final Field cutField) {
@@ -127,18 +126,8 @@ public class Otasco {
         }).toCollection());
     }
 
-    private static String dependencyFieldName(Field testField) {
-        final String dependencyValue = testField.getAnnotation(Dependency.class).value();
-        return StringUtils.isBlank(dependencyValue) ? testField.getName() : dependencyValue;
-    }
     
     private static Field getDependencyField(Object classUnderTest, String dependecyFieldName) throws SecurityException, NoSuchFieldException {
-		Field dependencyField;
-		try {
-			dependencyField = classUnderTest.getClass().getDeclaredField(dependecyFieldName);
-		} catch (NoSuchFieldException e) {
-			dependencyField = classUnderTest.getClass().getSuperclass().getDeclaredField(dependecyFieldName);
-		}
-		return dependencyField;
+		return FieldUtils.getField(classUnderTest.getClass(), dependecyFieldName, true);
 	}
 }
