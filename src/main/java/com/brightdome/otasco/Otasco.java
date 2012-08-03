@@ -57,14 +57,7 @@ public class Otasco {
 
         final List<Field> dependencyFields = dependencyFieldsFromAnnotations(testClass);
 
-        final Option<Field> maybeClassUnderTest = classUnderTestFromAnnotation(testClass);
-        if (maybeClassUnderTest.isNone()) {
-            throw new OtascoException("@ClassUnderTest must be specified.  For info on how to use @ClassUnderTest and @Dependency see examples in Javadoc for OtascoAnnotations class.");
-        }
-        
-        final Field classUnderTestField = maybeClassUnderTest.some();
-
-        makeAccessible(classUnderTestField);
+        final Field classUnderTestField = retrieveClassUnderTest(testClass);
 
         try {
             final Object classUnderTest = classUnderTestField.get(testClass);
@@ -83,6 +76,17 @@ public class Otasco {
             throw new OtascoException("Error processing class under test: " + e.getMessage(), e);
         }
     }
+
+	public static Field retrieveClassUnderTest(final Object testClass) {
+		final Option<Field> maybeClassUnderTest = classUnderTestFromAnnotation(testClass);
+        if (maybeClassUnderTest.isNone()) {
+            throw new OtascoException("@ClassUnderTest must be specified.  For info on how to use @ClassUnderTest and @Dependency see examples in Javadoc for OtascoAnnotations class.");
+        }
+        
+        final Field classUnderTestField = maybeClassUnderTest.some();
+        makeAccessible(classUnderTestField);
+		return classUnderTestField;
+	}
 
     /**
      * Attempts to set the named field on a target object with the value passed in.
