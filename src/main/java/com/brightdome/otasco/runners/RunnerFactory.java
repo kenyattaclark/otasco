@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import com.brightdome.otasco.Otasco;
 import com.brightdome.otasco.OtascoException;
 
+@SuppressWarnings("deprecation")
 public class RunnerFactory {
 	
 	private static boolean jUnit45OrHigher;
@@ -29,19 +30,8 @@ public class RunnerFactory {
 	public static Runner create(Class<?> clazz) throws InitializationError, org.junit.internal.runners.InitializationError {
 		if (jUnit45OrHigher) {
 			return new BlockJUnit4ClassRunner(clazz) {
-	            protected Statement withBefores(FrameworkMethod method, Object target, Statement statement) {
-	                // init annotated mocks before tests
-	            	
-	            	Field classUnderTestField = Otasco.retrieveClassUnderTest(target);
-	        		try {
-	        			classUnderTestField.set(target, classUnderTestField.getType().newInstance());
-	        		} catch (Exception e) {
-	        			throw new OtascoException("When using OtascoMockitoJUnitRunner @ClassUnderTest must have no argument constructor otherwise use Otasco.init().");
-	        		}
-	            	
-	            	
-	                MockitoAnnotations.initMocks(target);
-	                Otasco.init(target);
+                protected Statement withBefores(FrameworkMethod method, Object target, Statement statement) {
+	                initMocks(target);
 	                return super.withBefores(method, target, statement);
 	            }
 	        };
@@ -49,22 +39,28 @@ public class RunnerFactory {
 			return new JUnit4ClassRunner(clazz) {
 	            @Override
 	            protected Object createTest() throws Exception {
-	                Object test = super.createTest();
-	                
-	                
-	                Field classUnderTestField = Otasco.retrieveClassUnderTest(test);
-	        		try {
-	        			classUnderTestField.set(test, classUnderTestField.getDeclaringClass().newInstance());
-	        		} catch (Exception e) {
-	        			throw new OtascoException("When using OtascoMockitoJUnitRunner @ClassUnderTest must have no argument constructor otherwise use Otasco.init().");
-	        		}
-	                
-	                MockitoAnnotations.initMocks(test);
-
-	                Otasco.init(test);
+	                final Object test = super.createTest();
+	                initMocks(test);
 	                return test;
 	            }
 	        };
 		}
 	}
+	
+	protected static void initClassUnderTest(Object target) {
+        Field classUnderTestField = Otasco.retrieveClassUnderTest(target);
+        try {
+            classUnderTestField.set(target, classUnderTestField.getType().newInstance());
+        } catch (Exception e) {
+            throw new OtascoException("When using OtascoMockitoJUnitRunner @ClassUnderTest must have no argument constructor otherwise use Otasco.init().");
+        }
+    }
+
+    protected static void initMocks(Object target) {
+        // init class under test
+        initClassUnderTest(target);
+        // init annotated mocks before tests
+        MockitoAnnotations.initMocks(target);
+        Otasco.init(target);
+    }
 }

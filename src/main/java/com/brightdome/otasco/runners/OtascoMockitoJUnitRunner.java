@@ -12,7 +12,8 @@ public class OtascoMockitoJUnitRunner extends Runner {
 	
 	private Runner runner;
 	
-	public OtascoMockitoJUnitRunner(Class<?> clazz) throws InvocationTargetException, InitializationError, org.junit.internal.runners.InitializationError {
+	@SuppressWarnings("deprecation")
+    public OtascoMockitoJUnitRunner(Class<?> clazz) throws InvocationTargetException, InitializationError, org.junit.internal.runners.InitializationError {
 		runner = RunnerFactory.create(clazz);
 	}
 
