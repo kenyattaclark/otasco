@@ -20,6 +20,7 @@
 
 * Possibly using Mockito (or your favorite mocking library)
 
+        @RunWith(OtascoMockitoJUnitRunner.class)
         public class InvoiceManagerTest {
             @ClassUnderTest private InvoiceManager manager;
                         
@@ -31,10 +32,5 @@
             @Mock
             private InvoiceDao invoiceDao;
                         
-            @Before public void setup() {
-                MockitoAnnotations.init(this); 
-                manager = new InvoiceManager();
-                Otasco.init(this);
-            }
         }
     
