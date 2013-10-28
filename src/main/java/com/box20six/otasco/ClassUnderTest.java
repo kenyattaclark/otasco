@@ -1,4 +1,4 @@
-package com.brightdome.otasco;
+package com.box20six.otasco;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

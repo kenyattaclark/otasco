@@ -1,4 +1,4 @@
-package com.brightdome.otasco;
+package com.box20six.otasco;
 
 import java.lang.reflect.Field;
 import java.util.LinkedList;

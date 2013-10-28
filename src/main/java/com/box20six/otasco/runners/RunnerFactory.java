@@ -1,4 +1,4 @@
-package com.brightdome.otasco.runners;
+package com.box20six.otasco.runners;
 
 import java.lang.reflect.Field;
 
@@ -10,8 +10,8 @@ import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 import org.mockito.MockitoAnnotations;
 
-import com.brightdome.otasco.Otasco;
-import com.brightdome.otasco.OtascoException;
+import com.box20six.otasco.Otasco;
+import com.box20six.otasco.OtascoException;
 
 @SuppressWarnings("deprecation")
 public class RunnerFactory {

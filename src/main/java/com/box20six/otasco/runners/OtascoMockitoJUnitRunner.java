@@ -1,4 +1,4 @@
-package com.brightdome.otasco.runners;
+package com.box20six.otasco.runners;
 
 import java.lang.reflect.InvocationTargetException;
 

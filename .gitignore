@@ -2,4 +2,6 @@
 .project
 .settings
 .DS_Store
+*.iml
+*.idea
 target

@@ -1,4 +1,4 @@
-package com.brightdome.otasco;
+package com.box20six.otasco;
 
 public class OtascoException extends RuntimeException {
 

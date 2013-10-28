@@ -1,10 +1,10 @@
-package com.brightdome.otasco;
+package com.box20six.otasco;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import com.brightdome.otasco.runners.OtascoMockitoJUnitRunner;
+import com.box20six.otasco.runners.OtascoMockitoJUnitRunner;
 
 @RunWith(OtascoMockitoJUnitRunner.class)
 public class DoSomethingServiceRunnerTest {

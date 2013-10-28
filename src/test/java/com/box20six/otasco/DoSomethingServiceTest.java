@@ -1,14 +1,6 @@
-package com.brightdome.otasco;
+package com.box20six.otasco;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.brightdome.otasco.ClassUnderTest;
-import com.brightdome.otasco.Dependency;
-import com.brightdome.otasco.DependencyA;
-import com.brightdome.otasco.DependencyB;
-import com.brightdome.otasco.DoSomethingService;
-import com.brightdome.otasco.Otasco;
-
 
 
 public class DoSomethingServiceTest {
