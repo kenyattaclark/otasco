@@ -32,8 +32,8 @@
 
     <scm>
         <connection>scm:git:git@github.com:kenyattaclark/otasco.git</connection>
-        <url>scm:git:git@github.com:kenyattaclark/otasco.git</url>
-        <developerConnection>scm:git:git@github.com:kenyattaclark/otasco.git</developerConnection>
+        <url>https://github.com/kenyattaclark/otasco</url>
+        <developerConnection>scm:git:ssh://git@github.com:kenyattaclark/otasco.git</developerConnection>
     </scm>
 
     <properties>
