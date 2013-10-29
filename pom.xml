@@ -94,14 +94,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-    <developers>
-        <developer>
-            kenyatta.clarkatgmail.com
-        </developer>
-        <developer>
-            jeff.t.bowmanatgmakl.com
-        </developer>
-    </developers>
 </project>
