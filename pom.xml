@@ -4,7 +4,17 @@
     <groupId>com.box20six</groupId>
     <artifactId>otasco</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>otasco</name>
+
+    <description>
+        Initializes the class under test with it dependencies so that you do not have to declare setters just
+        for testing.
+    </description>
+
+    <url>
+        http://www.kenyattaclark.com/box20six/otasco
+    </url>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -70,6 +80,7 @@
   			<scope>provided</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -83,4 +94,14 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <developers>
+        <developer>
+            kenyatta.clarkatgmail.com
+        </developer>
+        <developer>
+            jeff.t.bowmanatgmakl.com
+        </developer>
+    </developers>
 </project>
