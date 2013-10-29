@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.box20six</groupId>
     <artifactId>otasco</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>otasco</name>
 
@@ -34,7 +34,7 @@
         <connection>scm:git:git@github.com:kenyattaclark/otasco.git</connection>
         <url>https://github.com/kenyattaclark/otasco</url>
         <developerConnection>scm:git:ssh://git@github.com:kenyattaclark/otasco.git</developerConnection>
-      <tag>otasco-1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
