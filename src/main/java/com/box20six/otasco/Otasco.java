@@ -2,6 +2,8 @@ package com.box20six.otasco;
 
 import java.lang.reflect.Field;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -66,7 +68,7 @@ public class Otasco {
                 throw new OtascoException("@ClassUnderTest must be initialize prior to calling OtascoAnnotations.init().  For info on how to use @ClassUnderTest and @Dependency see examples in Javadoc for OtascoAnnotations class.");
             }
 
-            dependencyFieldsFromAnnotations2(testClass).forEach(f -> {
+            dependencyFieldsFromAnnotations.apply(testClass).forEach(f -> {
                 try {
                     final Field df = getDependencyField(classUnderTest, f.getName());
                     makeAccessible(df);
@@ -82,7 +84,7 @@ public class Otasco {
     }
 
     public static Field retrieveClassUnderTest(final Object testClass) {
-        final Field classUnderTestField = classUnderTestFromAnnotation2(testClass).orElseThrow(() -> {
+        final Field classUnderTestField = classUnderTestFromAnnotation.apply(testClass).orElseThrow(() -> {
             return new OtascoException("@ClassUnderTest must be specified.  For info on how to use @ClassUnderTest and @Dependency see examples in Javadoc for OtascoAnnotations class.");
         });
         makeAccessible(classUnderTestField);
@@ -109,22 +111,18 @@ public class Otasco {
         cutField.setAccessible(true);
     }
 
-    private static Stream<Field> declaredFields2(final Object testClass) {
-        return Stream.of(testClass.getClass().getDeclaredFields());
-    }
-
-    private static Optional<Field> classUnderTestFromAnnotation2(final Object testClass) {
-        return declaredFields2(testClass)
-                .filter(field -> field.getAnnotation(ClassUnderTest.class) != null)
-                .findFirst();
-    }
-
-    private static Stream<Field> dependencyFieldsFromAnnotations2(final Object testClass) {
-        return declaredFields2(testClass)
-                .filter(field -> field.getAnnotation(Dependency.class) != null);
-    }
-
-    private static Field getDependencyField(Object classUnderTest, String dependecyFieldName) { // throws SecurityException, NoSuchFieldException {
+    private static Field getDependencyField(Object classUnderTest, String dependecyFieldName) {
         return FieldUtils.getField(classUnderTest.getClass(), dependecyFieldName, true);
     }
+
+    private static final Function<Object, Stream<Field>> declaredFields = testClass -> Stream.of(testClass.getClass().getDeclaredFields());
+
+    private static final Predicate<Field> isClassUnderTest = f -> f.getAnnotation(ClassUnderTest.class) != null;
+    private static final Predicate<Field> isDependency = f -> f.getAnnotation(Dependency.class) != null;
+
+    private static final Function<Object, Optional<Field>> classUnderTestFromAnnotation
+            = declaredFields.andThen(s -> s.filter(isClassUnderTest).findFirst());
+
+    private static final Function<Object, Stream<Field>> dependencyFieldsFromAnnotations
+            = declaredFields.andThen(s -> s.filter(isDependency));
 }
